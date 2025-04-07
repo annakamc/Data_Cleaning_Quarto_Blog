@@ -18,24 +18,35 @@ Whether you're a complete beginner or a seasoned analyst, this blog shows how re
 ## 🏗️ GitHub Project Structure
 
 ```plaintext
-DSS_Senior_project_Blog.github.io/
-├── _quarto.yml           # Quarto site configuration (navbar, sidebar, blog links)
-├── index.qmd             # Home page listing blog posts or intro
-├── about.qmd             # About Me section with bio and links
-├── posts/                # All blog post folders
-│   ├── welcome/          # Blog post: Welcome To My Regex Blog
+📦 DSS_Senior_project_Blog.github.io/
+├── _quarto.yml                # Site structure (navbars, posts, sidebar)
+├── index.qmd                 # Home page
+├── about.qmd                 # About Me page
+├── README.md                 # You're here!
+├── styles.css                # Custom styles
+├── posts/                    # Blog post sources
+│   ├── welcome/
+│   │   ├── index.qmd         # Welcome blog post (raw Quarto)
+│   │   ├── thumbnail.jpg
+│   │   └── _metadata.yml
+│   ├── post-with-code/
 │   │   └── index.qmd
-│   ├── post-with-code/   # Blog post: Code-heavy example
-│   │   └── index.qmd
-│   └── real-life-examples/  # Industry Examples
-│       └── index.qmd
-├── qmds/                 # Deep-dive reference content (regex tutorials, value-adds)
-│   ├── regex/            # Intro, beginner, intermediate, advanced regex
-│   ├── value/            # Posts about business value, skillset, confidence
-│   └── total_projects/   # Project summaries (e.g., IEEE, IEC, Paint, Primer)
-├── styles.css            # Custom styling for the Quarto site
-├── docs/                 # Rendered output published to GitHub Pages
-└── README.md             # You're here!
+│   └── real-life-examples/
+│       └── index.qmd         # New regex use case post
+├── docs/                     # Output folder for GitHub Pages
+│   ├── index.html
+│   ├── about.html
+│   ├── posts/
+│   │   ├── welcome/
+│   │   │   ├── index.html
+│   │   │   ├── thumbnail_regex.jpg
+│   │   ├── post-with-code/
+│   │   │   ├── index.html
+│   │   │   ├── thumbnail.jpg
+│   │   │   └── woman_regex_pic.png
+│   │   └── real-life-examples/
+│   │       └── index.html
+│   └── site_libs/            # Scripts and CSS libraries
 ```
 
 ---

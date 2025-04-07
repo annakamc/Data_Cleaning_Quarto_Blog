@@ -17,71 +17,19 @@ website:
         text: About
       - text: Blog
         menu:
-          - href: docs/posts/welcome/index.html
+          - href: posts/welcome/index.qmd
             text: Welcome
-          - href: docs/posts/post-with-code/index.html
+          - href: posts/post-with-code/index.qmd
             text: Posts with Code
-          - href: docs/posts/real-life-examples/index.html
+          - href: posts/real-life-examples/index.qmd
             text: Real World Use Cases
+
     right:
       - about.qmd
       - icon: github
         href: https://github.com/annakamc
       - icon: linkedin
         href: https://www.linkedin.com/in/annaka-mcc
-
-  sidebar: 
-    - title: "Regex :)"
-      style: "docked"
-      background: light
-      contents:
-        - text: "Regex Intro"
-          file: qmds/regex/regex_intro.qmd
-        - text: "---"
-        - text: "Beginners"
-          file: qmds/regex/regex_beginner.qmd
-        - text: "---"
-        - text: "Intermediate"
-          file: qmds/regex/regex_intermediate.qmd
-        - text: "---"
-        - text: "Advanced"
-          file: qmds/regex/regex_advanced.qmd
-        - text: "---"
-
-    - title: "Business Value"
-      style: "docked"
-      background: light
-      contents:
-        - text: "For My Company"
-          file: qmds/value/business_value.qmd
-        - text: "---"
-        - text: "For My Skillset"
-          file: qmds/value/skillset.qmd
-        - text: "---"
-        - text: "For My Confidence"
-          file: qmds/value/confidence.qmd
-        - text: "---"
-
-    - title: "Total Projects"
-      style: "docked"
-      background: light
-      contents:
-        - text: "IEEE Standards"
-          file: qmds/total_projects/ieee_standards.qmd
-        - text: "---"
-        - text: "IEC Standards"
-          file: qmds/total_projects/iec.qmd
-        - text: "---"
-        - text: "Cast Iron Standards"
-          file: qmds/total_projects/cast_iron.qmd
-        - text: "---"
-        - text: "Paint Standards"
-          file: qmds/total_projects/paint.qmd
-        - text: "---"
-        - text: "Primer Callouts"
-          file: qmds/total_projects/primer.qmd
-        - text: "---"
-
 format:
   html:
     theme: cosmo
