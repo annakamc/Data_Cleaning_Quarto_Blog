@@ -9,7 +9,7 @@
 <meta name="author" content="Annaka McClelland">
 <meta name="dcterms.date" content="2025-03-15">
 
-<title>Post With Code – Data Cleaning Blog for My Regex Nerds</title>
+<title>Regex Overview – Data Cleaning Blog for My Regex Nerds</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Post With Code</h1>
+      <h1 class="title">Regex Overview</h1>
                       </div>
   </div>
     
@@ -151,7 +151,131 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is where I will transfer regex notebook</p>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mastering Regex in Python with VSCode</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 800px; margin: 2em auto; line-height: 1.6; padding: 0 1em; }
+      code, pre { background-color: #f4f4f4; border: 1px solid #ddd; border-radius: 5px; padding: 0.5em; display: block; overflow-x: auto; }
+      h1, h2, h3 { color: #2c3e50; }
+      .note { font-style: italic; color: #555; }
+    </style>
+  </head>
+  <body>
+  
+  <h1>Mastering Regex in Python Using VSCode</h1>
+  
+  <p>Welcome, curious coder! Whether you're a total beginner or a seasoned developer, this blog will walk you through the magical world of regular expressions (regex) in Python. We’ll start simple, then level up to real-world, advanced patterns—all within your favorite editor, <strong>VSCode</strong>.</p>
+  
+  <hr>
+  
+  <h2>🤔 What is Regex?</h2>
+  <p>Regex stands for <strong>regular expressions</strong>—a powerful way to search, match, and manipulate text. It’s like a language within a language for working with patterns in strings. Think of it as a super-powered version of <code>Ctrl+F</code>.</p>
+  
+  <hr>
+  
+  <h2>🚀 Getting Started: Beginner Regex in Python</h2>
+  <p>Let's learn to match some text using the built-in <code>re</code> module.</p>
+  
+  <pre><code class="language-python">import re
+  
+  text = "My favorite number is 42."
+  
+  # Match digits
+  match = re.search(r'\d+', text)
+  
+  if match:
+      print("Found number:", match.group())</code></pre>
+  
+  <p><strong>Explanation:</strong> <code>\d+</code> means “match one or more digits.” The <code>r</code> before the string makes it a raw string, so backslashes are treated literally.</p>
+  
+  <h3>Common Beginner Patterns</h3>
+  <ul>
+    <li><code>\d</code>: Any digit</li>
+    <li><code>\w</code>: Any word character (letter, digit, underscore)</li>
+    <li><code>\s</code>: Any whitespace (space, tab, newline)</li>
+    <li><code>.</code>: Any character except newline</li>
+  </ul>
+  
+  <hr>
+  
+  <h2>🧰 Intermediate Regex: Groups, Substitutions, and Greed</h2>
+  <p>Now that you're matching things, let’s extract and replace them.</p>
+  
+  <pre><code class="language-python">text = "My email is annaka@example.com"
+  
+  # Extract email using a group
+  match = re.search(r'([\w.-]+@[\w.-]+)', text)
+  
+  if match:
+      print("Email found:", match.group(1))</code></pre>
+  
+  <p><strong>Explanation:</strong> The parentheses define a <em>group</em>. Whatever matches inside gets captured. This is how we extract parts of the match.</p>
+  
+  <h3>Substitutions</h3>
+  <pre><code class="language-python">text = "The color is red."
+  new_text = re.sub(r'red', 'blue', text)
+  
+  print(new_text)</code></pre>
+  <p><strong>Output:</strong> <code>The color is blue.</code></p>
+  
+  <h3>Greedy vs Lazy Matching</h3>
+  <pre><code class="language-python">text = "&lt;title&gt;Welcome&lt;/title&gt;&lt;title&gt;Regex&lt;/title&gt;"
+  greedy = re.findall(r'&lt;title&gt;.*&lt;/title&gt;', text)
+  lazy = re.findall(r'&lt;title&gt;.*?&lt;/title&gt;', text)
+  
+  print("Greedy:", greedy)
+  print("Lazy:", lazy)</code></pre>
+  
+  <p><strong>Greedy</strong> matches the entire string, while <strong>lazy</strong> (with <code>?</code>) captures each one individually.</p>
+  
+  <hr>
+  
+  <h2>🧠 Advanced Regex: Lookaheads, Lookbehinds, and Named Groups</h2>
+  
+  <h3>Lookaheads</h3>
+  <pre><code class="language-python">text = "Password123"
+  
+  # Ensure it contains digits but don't include them in match
+  match = re.search(r'(?=.*\d)', text)
+  
+  print("Valid:", bool(match))</code></pre>
+  
+  <p><code>(?=...)</code> is a lookahead—it checks for a pattern without including it in the match.</p>
+  
+  <h3>Named Groups</h3>
+  <pre><code class="language-python">text = "Name: Annaka Age: 24"
+  
+  pattern = r"Name: (?P<name>\w+) Age: (?P<age>\d+)"
+  
+  match = re.search(pattern, text)
+  if match:
+      print("Name:", match.group("name"))
+      print("Age:", match.group("age"))</code></pre>
+  
+  <p>Named groups help keep your code readable—great for larger projects.</p>
+  
+  <hr>
+  
+  <h2>🔍 VSCode Tips for Regex</h2>
+  <ul>
+    <li>Press <code>Ctrl+F</code> → then click <code>.*</code> (regex mode) to test regex in open files.</li>
+    <li>You can search/replace across all files using regex in <code>Ctrl+Shift+F</code>.</li>
+    <li>Install Python extensions to get syntax highlighting and linting while testing your patterns.</li>
+  </ul>
+  
+  <hr>
+  
+  <h2>🎯 Final Thoughts</h2>
+  <p>Regex might look scary at first, but with a few patterns under your belt, it becomes one of the most versatile tools in your data or coding toolbox. Use it for cleaning, searching, parsing, or transforming text. If you ever feel stuck—don’t worry. You’re not alone, and the best way to learn is to try, break, and fix!</p>
+  
+  <p><em>Keep practicing, keep exploring, and let your regex journey begin!</em></p>
+  
+  </body>
+  </html>
+  
 
 
 
