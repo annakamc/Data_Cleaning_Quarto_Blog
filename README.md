@@ -36,3 +36,9 @@ DSS_Senior_project_Blog.github.io/
 ├── styles.css            # Custom styling for the Quarto site
 ├── docs/                 # Rendered output published to GitHub Pages
 └── README.md             # You're here!
+```
+
+---
+
+## 🤝 Contributing
+This blog is currently a solo project, but PRs, regex puzzles, or typo fixes are welcome! Feel free to fork and open an issue or pull request.
