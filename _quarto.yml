@@ -1,8 +1,8 @@
 project:
   type: website
   output-dir: docs
-  resources: 
-    - qmds
+  # resources: 
+  #   - qmds
 
 website:
   title: "Data Cleaning Blog for My Regex Nerds"
@@ -17,19 +17,19 @@ website:
         text: About
       - text: Blog
         menu:
-          - href: posts/welcome/index.qmd
+          - href: docs/posts/welcome/index.html
             text: Welcome
-          - href: posts/post-with-code/index.qmd
+          - href: docs/posts/post-with-code/index.html
             text: Posts with Code
-          - href: posts/real-life-examples/index.qmd
+          - href: docs/posts/real-life-examples/index.html
             text: Real World Use Cases
-
     right:
       - about.qmd
       - icon: github
         href: https://github.com/annakamc
       - icon: linkedin
         href: https://www.linkedin.com/in/annaka-mcc
+
 format:
   html:
     theme: cosmo
