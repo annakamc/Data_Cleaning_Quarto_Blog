@@ -1,18 +1,33 @@
 project:
   type: website
   output-dir: docs
+  resources: 
+    - qmds
 
 website:
   title: "Data Cleaning Blog for My Regex Nerds"
   back-to-top-navigation: true
   repo-url: https://github.com/annakamc/DSS_Senior_project_Blog.github.io/tree/main
+
   navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - text: Blog
+        menu:
+          - href: posts/welcome/index.qmd
+            text: Real-Life Example
+          - href: posts/post-with-code/index.qmd
+            text: Posts with Code
     right:
       - about.qmd
       - icon: github
         href: https://github.com/annakamc
       - icon: linkedin
-        href: www.linkedin.com/in/annaka-mcc
+        href: https://www.linkedin.com/in/annaka-mcc
+
   sidebar: 
     - title: "Regex :)"
       style: "docked"
@@ -30,6 +45,7 @@ website:
         - text: "Advanced"
           file: qmds/regex/regex_advanced.qmd
         - text: "---"
+
     - title: "Business Value"
       style: "docked"
       background: light
@@ -43,6 +59,7 @@ website:
         - text: "For My Confidence"
           file: qmds/value/confidence.qmd
         - text: "---"
+
     - title: "Total Projects"
       style: "docked"
       background: light
@@ -62,6 +79,7 @@ website:
         - text: "Primer Callouts"
           file: qmds/total_projects/primer.qmd
         - text: "---"
+
 format:
   html:
     theme: cosmo
