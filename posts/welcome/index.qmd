@@ -11,3 +11,4 @@ Data cleaning is one of the most important—and often overlooked—steps in any
 
 This post dives into one of my biggest passions—regex—and how it became a key part of one of my favorite projects: cleaning AWS Textract outputs from 2D PDF drawings. I was fortunate to be trusted with this project. By speaking and teaching about regex at advanced analytics meetings at work, I’ve carved out a niche where I get to use it daily. This project marks a turning point in my journey, and I’m excited to share what I’ve learned in a way that’s approachable, practical, and maybe even a little fun—for anyone curious about how powerful regex can be.
 
+
