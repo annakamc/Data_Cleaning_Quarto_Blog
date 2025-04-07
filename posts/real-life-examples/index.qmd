@@ -1,0 +1,15 @@
+---
+title: "How Regex Helped Me Save 10 Hours a Week"
+author: "Annaka McClelland"
+date: 2025-04-06
+categories: [Regex, Automation, Tips]
+---
+
+Content of your new post goes here. 🎉
+
+```python
+import re
+text = "Clean up your messy strings!"
+match = re.search(r"messy", text)
+if match:
+    print("Regex wins!")

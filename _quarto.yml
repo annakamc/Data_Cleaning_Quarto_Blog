@@ -18,9 +18,11 @@ website:
       - text: Blog
         menu:
           - href: posts/welcome/index.qmd
-            text: Real-Life Example
+            text: Welcome
           - href: posts/post-with-code/index.qmd
             text: Posts with Code
+          - href: posts/real-life-examples/index.qmd
+            text: Real World Use Cases
     right:
       - about.qmd
       - icon: github
