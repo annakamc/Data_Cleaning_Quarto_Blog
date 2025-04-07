@@ -7,7 +7,7 @@ categories: [Primer][Cast Iron][IEEE]
 
 Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!
 
-![](thumbnail.jpg){width=50%}
+![](woman_regex_pic.png){width=50%}
 
 This post dives into one of my biggest passions—regex—and how it became a key part of one of my favorite projects: cleaning AWS Textract outputs from 2D PDF drawings. I was fortunate to be trusted with this project. By speaking and teaching about regex at advanced analytics meetings at work, I’ve carved out a niche where I get to use it daily. This project marks a turning point in my journey, and I’m excited to share what I’ve learned in a way that’s approachable, practical, and maybe even a little fun—for anyone curious about how powerful regex can be.
 
