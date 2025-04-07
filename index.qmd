@@ -1,5 +1,5 @@
 ---
-title: "A Blog for my Fellow Regex Nerds"
+title: "Home Page"
 listing:
   contents: posts
   sort: "date desc"
