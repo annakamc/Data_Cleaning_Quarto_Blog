@@ -17,11 +17,11 @@ website:
         text: About
       - text: Blog
         menu:
-          - href: docs/posts/welcome/index.html
+          - href: posts/welcome/index.qmd
             text: Welcome
-          - href: docs/posts/post-with-code/index.html
+          - href: posts/post-with-code/index.qmd
             text: Posts with Code
-          - href: docs/posts/real-life-examples/index.html
+          - href: posts/real-life-examples/index.qmd
             text: Real World Use Cases
     right:
       - about.qmd
