@@ -57,7 +57,160 @@ The core value of this project is in the **regex parsing layers**:
 
 ---
 
-## Shell for Code Example
+## Code Example
 
-Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!
+
+### Function Purpose
+
+The `fx_find_paint_standards` function is designed to clean and extract valuable engineering metadata—specifically paint callouts—from AWS Textract output. These paint codes are often misread and inconsistently formatted, so this PySpark function applies rigorous pattern matching using regular expressions to pull out standardized insights.
+
+---
+
+### Step-by-Step Breakdown
+
+---
+
+#### Example Data
+
+```python
+example_list = ["zz", "x3", "ki"]
+example_dictionary = {
+  "zz": "Black primer",
+  "x3": "Durability level 3",
+  "ki": "Blue gloss coat"
+}
+```
+
+```python
+color_mapping_expr = F.create_map([F.lit(x) for x in itertools.chain(*color_mapping.items())])
+```
+
+**Purpose:** Creates a Spark `MapType` expression from a Python dictionary (`color_mapping`) so it can be used to map color codes to color names.
+
+```python
+row_count = df.count()
+```
+
+**Purpose:** Ensures the function only runs if there are rows in the DataFrame.
+
+---
+
+### Step: Topcoat Color Extraction
+
+```python
+.withColumn('topcoat_color_code',
+  F.when(F.col('text_lower').rlike(r'[ji1][a-z]{2}f[\d|i]\dkii'), ...)
+```
+
+This block determines what the topcoat color code is based on:
+
+- **`rlike(r'[ji1][a-z]{2}f[\d|i]\dkii')`**: Regex searches for misread variants of the enterprise standard.
+- **`substring(..., loc + std_len, 2)`**: Grabs 2 characters after the standard to find color code.
+
+#### Regex Breakdown:
+
+- `jdmf[\d|i]\dkii`: Matches strings like `jdmf14kii` or `jdmfi4kii`, accounting for misreads like `i` instead of `1`.
+- `substring(..., 2)`: Extracts potential two-character color code like `zz`.
+
+---
+
+### Step: Temperature Classification
+
+```python
+.withColumn('temp_class',
+  F.when(F.col('topcoat_color_code').isNull(), None)
+  .when(F.trim(F.expr("substring(... + topcoat_color_code_len, 1)"))
+```
+
+This block identifies the temperature class:
+
+- Checks for common misreads like `(`, `l`, `/`, `\` interpreted as `1`
+- Extracts the next character after topcoat color to assign class
+
+---
+
+### Step: Physical Property Classification
+
+```python
+.withColumn('physical_property_class',
+  F.when(F.col('temp_class').isNull(), None)
+```
+
+If the temperature class is defined, we then extract and classify the physical property using `a` or `b` as per JDMF14 standard.
+
+#### Description Mapping:
+
+- **`a`**: High-visibility parts (e.g., visible under normal operation)
+- **`b`**: Low-visibility or non-critical parts
+
+---
+
+### Step: Primer Color Extraction
+
+```python
+.withColumn('primer_color_code',
+  F.when(substring(...).isin('77', 'z7', '7z'), 'zz')
+```
+
+Primer codes are also often misread and need correcting:
+
+- Fixes `7z`, `z7` to `zz`
+- Pulls primer color from after the topcoat color + temperature + physical property code
+
+#### Regex Highlight:
+
+- `jdmf14[a-z]{1,2}[0-4][a|b][\+|\-|\=].` matches valid JDMF14 callouts with a primer code
+
+---
+
+### Step: Additional Requirements
+
+```python
+.withColumn('additional_requirements',
+  F.when(...).otherwise(F.trim(F.col('additional_requirements_prep')))
+```
+
+This part:
+
+- Captures trailing codes like `x3`, `x5`, `x1`
+- Handles common OCR misreads: `xl` = `x1`, `xt` = `x7`, `xo` = `x0`
+- Cleans up noisy strings that don’t conform to expected patterns
+
+#### Regex Breakdown:
+
+- `(?<!x)([0-7])|[^x|x0|x1|x2|x3|x4|x5|x6|x7]`: Matches invalid characters outside the `x0`–`x7` pattern group
+- `[(|c](.*?)\)`: Captures data inside parentheses like `(x3,x5)`
+
+---
+
+### Additional Highlights
+
+#### Fixing Color Misreads:
+```python
+.withColumn('topcoat_color_desc', color_mapping_expr[F.col('topcoat_color_code')])
+```
+Links each color code like `zz`, `ki`, `h2` to readable names like “Black primer” or “Blue gloss coat.”
+
+#### Final Formatting and Output:
+```python
+.select(...).withColumns({...})
+```
+Ensures:
+- All fields are either null or cleaned
+- Values are deduplicated by CAD part
+- Output includes page number and coordinates for tracing source data
+
+---
+
+### Summary
+
+This function turns messy engineering paint callouts into clean, structured features ready for use in:
+
+- Machine learning
+- Operational dashboards
+- Standards tracking
+
+Regex is the **workhorse** behind the curtain—handling OCR misreads, non-standard delimiters, and cascading dependencies.
+
+Let me know if you want this packaged for a GitHub wiki or auto-generated with docs!
 

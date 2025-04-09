@@ -212,7 +212,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#project-background" id="toc-project-background" class="nav-link active" data-scroll-target="#project-background">Project Background</a></li>
   <li><a href="#regex-flow-overview" id="toc-regex-flow-overview" class="nav-link" data-scroll-target="#regex-flow-overview">Regex Flow Overview</a></li>
   <li><a href="#the-real-star-parse...n" id="toc-the-real-star-parse...n" class="nav-link" data-scroll-target="#the-real-star-parse...n">The Real Star: <code>parse...n</code></a></li>
-  <li><a href="#shell-for-code-example" id="toc-shell-for-code-example" class="nav-link" data-scroll-target="#shell-for-code-example">Shell for Code Example</a></li>
+  <li><a href="#code-example" id="toc-code-example" class="nav-link" data-scroll-target="#code-example">Code Example</a>
+  <ul class="collapse">
+  <li><a href="#function-purpose" id="toc-function-purpose" class="nav-link" data-scroll-target="#function-purpose">Function Purpose</a></li>
+  <li><a href="#step-by-step-breakdown" id="toc-step-by-step-breakdown" class="nav-link" data-scroll-target="#step-by-step-breakdown">Step-by-Step Breakdown</a></li>
+  <li><a href="#step-topcoat-color-extraction" id="toc-step-topcoat-color-extraction" class="nav-link" data-scroll-target="#step-topcoat-color-extraction">Step: Topcoat Color Extraction</a></li>
+  <li><a href="#step-temperature-classification" id="toc-step-temperature-classification" class="nav-link" data-scroll-target="#step-temperature-classification">Step: Temperature Classification</a></li>
+  <li><a href="#step-physical-property-classification" id="toc-step-physical-property-classification" class="nav-link" data-scroll-target="#step-physical-property-classification">Step: Physical Property Classification</a></li>
+  <li><a href="#step-primer-color-extraction" id="toc-step-primer-color-extraction" class="nav-link" data-scroll-target="#step-primer-color-extraction">Step: Primer Color Extraction</a></li>
+  <li><a href="#step-additional-requirements" id="toc-step-additional-requirements" class="nav-link" data-scroll-target="#step-additional-requirements">Step: Additional Requirements</a></li>
+  <li><a href="#additional-highlights" id="toc-additional-highlights" class="nav-link" data-scroll-target="#additional-highlights">Additional Highlights</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -265,13 +276,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr>
 </section>
-<section id="shell-for-code-example" class="level2">
-<h2 class="anchored" data-anchor-id="shell-for-code-example">Shell for Code Example</h2>
-<p>Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!</p>
+<section id="code-example" class="level2">
+<h2 class="anchored" data-anchor-id="code-example">Code Example</h2>
+<section id="function-purpose" class="level3">
+<h3 class="anchored" data-anchor-id="function-purpose">Function Purpose</h3>
+<p>The <code>fx_find_paint_standards</code> function is designed to clean and extract valuable engineering metadata—specifically paint callouts—from AWS Textract output. These paint codes are often misread and inconsistently formatted, so this PySpark function applies rigorous pattern matching using regular expressions to pull out standardized insights.</p>
+<hr>
+</section>
+<section id="step-by-step-breakdown" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-breakdown">Step-by-Step Breakdown</h3>
+<hr>
+<section id="example-data" class="level4">
+<h4 class="anchored" data-anchor-id="example-data">Example Data</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"zz"</span>, <span class="st">"x3"</span>, <span class="st">"ki"</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>example_dictionary <span class="op">=</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"zz"</span>: <span class="st">"Black primer"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"x3"</span>: <span class="st">"Durability level 3"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ki"</span>: <span class="st">"Blue gloss coat"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>color_mapping_expr <span class="op">=</span> F.create_map([F.lit(x) <span class="cf">for</span> x <span class="kw">in</span> itertools.chain(<span class="op">*</span>color_mapping.items())])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Purpose:</strong> Creates a Spark <code>MapType</code> expression from a Python dictionary (<code>color_mapping</code>) so it can be used to map color codes to color names.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>row_count <span class="op">=</span> df.count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Purpose:</strong> Ensures the function only runs if there are rows in the DataFrame.</p>
+<hr>
+</section>
+</section>
+<section id="step-topcoat-color-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="step-topcoat-color-extraction">Step: Topcoat Color Extraction</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'topcoat_color_code'</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'text_lower'</span>).rlike(<span class="vs">r'[ji1][a-z]</span><span class="sc">{2}</span><span class="vs">f[\d|i]\dkii'</span>), ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This block determines what the topcoat color code is based on:</p>
+<ul>
+<li><strong><code>rlike(r'[ji1][a-z]{2}f[\d|i]\dkii')</code></strong>: Regex searches for misread variants of the enterprise standard.</li>
+<li><strong><code>substring(..., loc + std_len, 2)</code></strong>: Grabs 2 characters after the standard to find color code.</li>
+</ul>
+<section id="regex-breakdown" class="level4">
+<h4 class="anchored" data-anchor-id="regex-breakdown">Regex Breakdown:</h4>
+<ul>
+<li><code>jdmf[\d|i]\dkii</code>: Matches strings like <code>jdmf14kii</code> or <code>jdmfi4kii</code>, accounting for misreads like <code>i</code> instead of <code>1</code>.</li>
+<li><code>substring(..., 2)</code>: Extracts potential two-character color code like <code>zz</code>.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="step-temperature-classification" class="level3">
+<h3 class="anchored" data-anchor-id="step-temperature-classification">Step: Temperature Classification</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'temp_class'</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'topcoat_color_code'</span>).isNull(), <span class="va">None</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  .when(F.trim(F.expr(<span class="st">"substring(... + topcoat_color_code_len, 1)"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This block identifies the temperature class:</p>
+<ul>
+<li>Checks for common misreads like <code>(</code>, <code>l</code>, <code>/</code>, <code>\</code> interpreted as <code>1</code></li>
+<li>Extracts the next character after topcoat color to assign class</li>
+</ul>
+<hr>
+</section>
+<section id="step-physical-property-classification" class="level3">
+<h3 class="anchored" data-anchor-id="step-physical-property-classification">Step: Physical Property Classification</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'physical_property_class'</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'temp_class'</span>).isNull(), <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the temperature class is defined, we then extract and classify the physical property using <code>a</code> or <code>b</code> as per JDMF14 standard.</p>
+<section id="description-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="description-mapping">Description Mapping:</h4>
+<ul>
+<li><strong><code>a</code></strong>: High-visibility parts (e.g., visible under normal operation)</li>
+<li><strong><code>b</code></strong>: Low-visibility or non-critical parts</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="step-primer-color-extraction" class="level3">
+<h3 class="anchored" data-anchor-id="step-primer-color-extraction">Step: Primer Color Extraction</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'primer_color_code'</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  F.when(substring(...).isin(<span class="st">'77'</span>, <span class="st">'z7'</span>, <span class="st">'7z'</span>), <span class="st">'zz'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Primer codes are also often misread and need correcting:</p>
+<ul>
+<li>Fixes <code>7z</code>, <code>z7</code> to <code>zz</code></li>
+<li>Pulls primer color from after the topcoat color + temperature + physical property code</li>
+</ul>
+<section id="regex-highlight" class="level4">
+<h4 class="anchored" data-anchor-id="regex-highlight">Regex Highlight:</h4>
+<ul>
+<li><code>jdmf14[a-z]{1,2}[0-4][a|b][\+|\-|\=].</code> matches valid JDMF14 callouts with a primer code</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="step-additional-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="step-additional-requirements">Step: Additional Requirements</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'additional_requirements'</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  F.when(...).otherwise(F.trim(F.col(<span class="st">'additional_requirements_prep'</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This part:</p>
+<ul>
+<li>Captures trailing codes like <code>x3</code>, <code>x5</code>, <code>x1</code></li>
+<li>Handles common OCR misreads: <code>xl</code> = <code>x1</code>, <code>xt</code> = <code>x7</code>, <code>xo</code> = <code>x0</code></li>
+<li>Cleans up noisy strings that don’t conform to expected patterns</li>
+</ul>
+<section id="regex-breakdown-1" class="level4">
+<h4 class="anchored" data-anchor-id="regex-breakdown-1">Regex Breakdown:</h4>
+<ul>
+<li><code>(?&lt;!x)([0-7])|[^x|x0|x1|x2|x3|x4|x5|x6|x7]</code>: Matches invalid characters outside the <code>x0</code>–<code>x7</code> pattern group</li>
+<li><code>[(|c](.*?)\)</code>: Captures data inside parentheses like <code>(x3,x5)</code></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="additional-highlights" class="level3">
+<h3 class="anchored" data-anchor-id="additional-highlights">Additional Highlights</h3>
+<section id="fixing-color-misreads" class="level4">
+<h4 class="anchored" data-anchor-id="fixing-color-misreads">Fixing Color Misreads:</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'topcoat_color_desc'</span>, color_mapping_expr[F.col(<span class="st">'topcoat_color_code'</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Links each color code like <code>zz</code>, <code>ki</code>, <code>h2</code> to readable names like “Black primer” or “Blue gloss coat.”</p>
+</section>
+<section id="final-formatting-and-output" class="level4">
+<h4 class="anchored" data-anchor-id="final-formatting-and-output">Final Formatting and Output:</h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>.select(...).withColumns({...})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ensures: - All fields are either null or cleaned - Values are deduplicated by CAD part - Output includes page number and coordinates for tracing source data</p>
+<hr>
+</section>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>This function turns messy engineering paint callouts into clean, structured features ready for use in:</p>
+<ul>
+<li>Machine learning</li>
+<li>Operational dashboards</li>
+<li>Standards tracking</li>
+</ul>
+<p>Regex is the <strong>workhorse</strong> behind the curtain—handling OCR misreads, non-standard delimiters, and cascading dependencies.</p>
+<p>Let me know if you want this packaged for a GitHub wiki or auto-generated with docs!</p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -559,68 +697,221 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Real-Life Examples of Data Cleaning with Regex"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Annaka McClelland"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-03-03"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Real-World,Cast Iron,IEEE]</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="al">![](woman_regex_pic.png)</span>{width=50%}</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Regex isn't just for text matching—it's a powerhouse for real-world impact.** From cleaning AWS Textract output to powering dashboards and machine learning models, regex plays a vital role in transforming raw text into structured, actionable insights. Let’s explore how I used it to help save my company over $100K and handle 50+ million rows of data (and growing!).</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Background</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>I was tasked with extracting data from complex engineering PDF drawings using **AWS Textract**, and turning the output into a **clean, relational dataframe**. The goal? Meet the diverse needs of downstream teams—whether for **machine learning models**, **dashboards**, or **reporting insights**—by making messy unstructured text clean and usable.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>To do this, I built a **modular data cleaning and transformation flow** in **Databricks** using **PySpark**, powered by a growing suite of custom regex functions.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regex Flow Overview</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>This is the end-to-end pipeline I designed, which this blog will break down (with a visual coming soon!):</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>**ingest → explode → parse → parse...n → compile → format → productionize**</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ingest**: Read AWS Textract output from S3 into Databricks</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Explode**: Flatten nested JSON text objects into rows</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parse**: Extract key patterns or features with regex</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parse...n**: Repeat parsing steps as needed, based on logic layers</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Compile**: Append raw parsing outputs into a unified staging table</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Format**: Clean, reformat, and standardize columns for EDL ingestion</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Productionize**: Load into **EDL current** for dashboards, ML, and analytics</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Real Star: `parse...n`</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>The core value of this project is in the **regex parsing layers**:</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🏗️ **Enterprise standards** are identified and extracted using flexible pattern matchers</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🧼 **Filters** clean up misreads or irrelevant tokens</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🧠 My favorite step: I built a PySpark function to **clean, label, and enhance** the extracted data</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Adds a <span class="in">`description`</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Outputs cleaned <span class="in">`standard_text`</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Adds contextual details like <span class="in">`coating_type`</span>, <span class="in">`layer_type`</span>, etc.</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🔄 Then I used <span class="in">`fx_feature_format`</span> to **collapse** the cleaned results into one clean output ready for the next step</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Shell for Code Example</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Real-Life Examples of Data Cleaning with Regex"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Annaka McClelland"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-03-03"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Real-World,Cast Iron,IEEE]</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="al">![](woman_regex_pic.png)</span>{width=50%}</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Regex isn't just for text matching—it's a powerhouse for real-world impact.** From cleaning AWS Textract output to powering dashboards and machine learning models, regex plays a vital role in transforming raw text into structured, actionable insights. Let’s explore how I used it to help save my company over $100K and handle 50+ million rows of data (and growing!).</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Project Background</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>I was tasked with extracting data from complex engineering PDF drawings using **AWS Textract**, and turning the output into a **clean, relational dataframe**. The goal? Meet the diverse needs of downstream teams—whether for **machine learning models**, **dashboards**, or **reporting insights**—by making messy unstructured text clean and usable.</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>To do this, I built a **modular data cleaning and transformation flow** in **Databricks** using **PySpark**, powered by a growing suite of custom regex functions.</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regex Flow Overview</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>This is the end-to-end pipeline I designed, which this blog will break down (with a visual coming soon!):</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>**ingest → explode → parse → parse...n → compile → format → productionize**</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ingest**: Read AWS Textract output from S3 into Databricks</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Explode**: Flatten nested JSON text objects into rows</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parse**: Extract key patterns or features with regex</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Parse...n**: Repeat parsing steps as needed, based on logic layers</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Compile**: Append raw parsing outputs into a unified staging table</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Format**: Clean, reformat, and standardize columns for EDL ingestion</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Productionize**: Load into **EDL current** for dashboards, ML, and analytics</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Real Star: `parse...n`</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>The core value of this project is in the **regex parsing layers**:</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🏗️ **Enterprise standards** are identified and extracted using flexible pattern matchers</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🧼 **Filters** clean up misreads or irrelevant tokens</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🧠 My favorite step: I built a PySpark function to **clean, label, and enhance** the extracted data</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Adds a <span class="in">`description`</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Outputs cleaned <span class="in">`standard_text`</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>Adds contextual details like <span class="in">`coating_type`</span>, <span class="in">`layer_type`</span>, etc.</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>🔄 Then I used <span class="in">`fx_feature_format`</span> to **collapse** the cleaned results into one clean output ready for the next step</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Code Example</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### Function Purpose</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>The <span class="in">`fx_find_paint_standards`</span> function is designed to clean and extract valuable engineering metadata—specifically paint callouts—from AWS Textract output. These paint codes are often misread and inconsistently formatted, so this PySpark function applies rigorous pattern matching using regular expressions to pull out standardized insights.</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step-by-Step Breakdown</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Example Data</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>example_list <span class="op">=</span> [<span class="st">"zz"</span>, <span class="st">"x3"</span>, <span class="st">"ki"</span>]</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>example_dictionary <span class="op">=</span> {</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>  <span class="st">"zz"</span>: <span class="st">"Black primer"</span>,</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>  <span class="st">"x3"</span>: <span class="st">"Durability level 3"</span>,</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ki"</span>: <span class="st">"Blue gloss coat"</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>color_mapping_expr <span class="op">=</span> F.create_map([F.lit(x) <span class="cf">for</span> x <span class="kw">in</span> itertools.chain(<span class="op">*</span>color_mapping.items())])</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>**Purpose:** Creates a Spark <span class="in">`MapType`</span> expression from a Python dictionary (<span class="in">`color_mapping`</span>) so it can be used to map color codes to color names.</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>row_count <span class="op">=</span> df.count()</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>**Purpose:** Ensures the function only runs if there are rows in the DataFrame.</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### Step: Topcoat Color Extraction</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'topcoat_color_code'</span>,</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'text_lower'</span>).rlike(<span class="vs">r'[ji1][a-z]</span><span class="sc">{2}</span><span class="vs">f[\d|i]\dkii'</span>), ...)</span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>This block determines what the topcoat color code <span class="kw">is</span> based on:</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>`rlike(<span class="vs">r'[ji1][a-z]</span><span class="sc">{2}</span><span class="vs">f[\d|i]\dkii'</span>)`<span class="op">**</span>: Regex searches <span class="cf">for</span> misread variants of the enterprise standard.</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>`substring(..., loc <span class="op">+</span> std_len, <span class="dv">2</span>)`<span class="op">**</span>: Grabs <span class="dv">2</span> characters after the standard to find color code.</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="co">#### Regex Breakdown:</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `jdmf[\d<span class="op">|</span>i]\dkii`: Matches strings like `jdmf14kii` <span class="kw">or</span> `jdmfi4kii`, accounting <span class="cf">for</span> misreads like `i` instead of `<span class="dv">1</span>`.</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `substring(..., <span class="dv">2</span>)`: Extracts potential two<span class="op">-</span>character color code like `zz`.</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a><span class="co">### Step: Temperature Classification</span></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'temp_class'</span>,</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'topcoat_color_code'</span>).isNull(), <span class="va">None</span>)</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>  .when(F.trim(F.expr(<span class="st">"substring(... + topcoat_color_code_len, 1)"</span>))</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>This block identifies the temperature <span class="kw">class</span>:</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Checks <span class="cf">for</span> common misreads like `(`, `l`, `<span class="op">/</span>`, `\` interpreted <span class="im">as</span> `<span class="dv">1</span>`</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Extracts the <span class="bu">next</span> character after topcoat color to assign <span class="kw">class</span></span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="co">### Step: Physical Property Classification</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'physical_property_class'</span>,</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>  F.when(F.col(<span class="st">'temp_class'</span>).isNull(), <span class="va">None</span>)</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>If the temperature <span class="kw">class</span> <span class="kw">is</span> defined, we then extract <span class="kw">and</span> classify the physical <span class="bu">property</span> using `a` <span class="kw">or</span> `b` <span class="im">as</span> per JDMF14 standard.</span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a><span class="co">#### Description Mapping:</span></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>`a`<span class="op">**</span>: High<span class="op">-</span>visibility parts (e.g., visible under normal operation)</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="op">**</span>`b`<span class="op">**</span>: Low<span class="op">-</span>visibility <span class="kw">or</span> non<span class="op">-</span>critical parts</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="co">### Step: Primer Color Extraction</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'primer_color_code'</span>,</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>  F.when(substring(...).isin(<span class="st">'77'</span>, <span class="st">'z7'</span>, <span class="st">'7z'</span>), <span class="st">'zz'</span>)</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>Primer codes are also often misread <span class="kw">and</span> need correcting:</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Fixes `<span class="dv">7</span><span class="er">z</span>`, `z7` to `zz`</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Pulls primer color <span class="im">from</span> after the topcoat color <span class="op">+</span> temperature <span class="op">+</span> physical <span class="bu">property</span> code</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a><span class="co">#### Regex Highlight:</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `jdmf14[a<span class="op">-</span>z]{<span class="dv">1</span>,<span class="dv">2</span>}[<span class="dv">0</span><span class="op">-</span><span class="dv">4</span>][a<span class="op">|</span>b][\<span class="op">+|</span>\<span class="op">-|</span>\<span class="op">=</span>].` matches valid JDMF14 callouts <span class="cf">with</span> a primer code</span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a><span class="co">### Step: Additional Requirements</span></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'additional_requirements'</span>,</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>  F.when(...).otherwise(F.trim(F.col(<span class="st">'additional_requirements_prep'</span>)))</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>This part:</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Captures trailing codes like `x3`, `x5`, `x1`</span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Handles common OCR misreads: `xl` <span class="op">=</span> `x1`, `xt` <span class="op">=</span> `x7`, `xo` <span class="op">=</span> `x0`</span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Cleans up noisy strings that don’t conform to expected patterns</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a><span class="co">#### Regex Breakdown:</span></span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `(?<span class="op">&lt;!</span>x)([<span class="dv">0</span><span class="op">-</span><span class="dv">7</span>])<span class="op">|</span>[<span class="op">^</span>x<span class="op">|</span>x0<span class="op">|</span>x1<span class="op">|</span>x2<span class="op">|</span>x3<span class="op">|</span>x4<span class="op">|</span>x5<span class="op">|</span>x6<span class="op">|</span>x7]`: Matches invalid characters outside the `x0`–`x7` pattern group</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `[(<span class="op">|</span>c](.<span class="op">*</span>?)\)`: Captures data inside parentheses like `(x3,x5)`</span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a><span class="co">### Additional Highlights</span></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a><span class="co">#### Fixing Color Misreads:</span></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>.withColumn(<span class="st">'topcoat_color_desc'</span>, color_mapping_expr[F.col(<span class="st">'topcoat_color_code'</span>)])</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>Links each color code like `zz`, `ki`, `h2` to readable names like “Black primer” <span class="kw">or</span> “Blue gloss coat.”</span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a><span class="co">#### Final Formatting and Output:</span></span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>.select(...).withColumns({...})</span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a>Ensures:</span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> All fields are either null <span class="kw">or</span> cleaned</span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Values are deduplicated by CAD part</span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Output includes page number <span class="kw">and</span> coordinates <span class="cf">for</span> tracing source data</span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="op">---</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a><span class="co">### Summary</span></span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>This function turns messy engineering paint callouts into clean, structured features ready <span class="cf">for</span> use <span class="kw">in</span>:</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Machine learning</span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Operational dashboards</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Standards tracking</span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a>Regex <span class="kw">is</span> the <span class="op">**</span>workhorse<span class="op">**</span> behind the curtain—handling OCR misreads, non<span class="op">-</span>standard delimiters, <span class="kw">and</span> cascading dependencies.</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>Let me know <span class="cf">if</span> you want this packaged <span class="cf">for</span> a GitHub wiki <span class="kw">or</span> auto<span class="op">-</span>generated <span class="cf">with</span> docs<span class="op">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
