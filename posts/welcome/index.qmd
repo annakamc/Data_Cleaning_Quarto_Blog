@@ -2,7 +2,7 @@
 title: "Real-Life Examples of Data Cleaning with Regex"
 author: "Annaka McClelland"
 date: "2025-03-03"
-categories: [Primer,Cast Iron,IEEE]
+# categories: [Real-World,Cast Iron,IEEE]
 ---
 
 Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!
