@@ -1,7 +1,121 @@
 ---
-title: "Post With Code"
+title: "Regex Walkthrough"
 author: "Annaka McClelland"
 date: "2025-03-15"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
 ---
 
-This is where I will transfer regex notebook
+# Regular Expression Notebook (PySpark Edition)
+
+**Objective**: Learn and apply regular expressions (Regex) in PySpark for feature engineering, data cleaning, and data transformation tasks.
+
+---
+
+## What is Regex?
+Regex (Regular Expressions) is a sequence of characters used to match patterns in text. It's incredibly useful in data science and engineering workflows to:
+- Validate input
+- Extract values
+- Clean and format messy strings
+
+👉 Recommended resources:
+- [Apache Spark Regex Functions](https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.regexp.html)
+- [Regexr Playground](https://regexr.com/)
+
+---
+
+## Key PySpark Regex Functions
+
+```python
+from pyspark.sql import SparkSession, functions as F
+spark = SparkSession.builder.getOrCreate()
+```
+
+- **`rlike()`** – Filters rows matching a regex.
+- **`regexp_extract()`** – Extracts matching groups from text.
+- **`regexp_replace()`** – Replaces substrings matching regex.
+
+---
+
+## Beginner: Pattern Matching & Filtering
+
+```python
+# Simple filter: find cadname containing '_s1' + 1-3 characters and ending in '.'
+df = spark.table("pdda_pac.pac_silver_prod")
+df_filtered = df.filter(F.col("cadname").rlike(r"_s1.{1,3}\.")).limit(10)
+df_filtered.display()
+```
+
+## Basic Extraction
+
+```python
+emails = [("Alice", "alice@example.com"), ("Bob", "bob_at_example.com")]
+df_email = spark.createDataFrame(emails, ["name", "email"])
+df_email = df_email.withColumn("domain", F.regexp_extract("email", r"@([\w.]+)", 1))
+df_email.display()
+```
+
+---
+
+## Intermediate: Grouping & Boundaries
+
+```python
+invoice_data = [("Invoice ID: 001 Date: 2023-03-15",)]
+df_invoice = spark.createDataFrame(invoice_data, ["text"])
+df_invoice = df_invoice.withColumn("year", F.regexp_extract("text", r"(?<year>\d{4})", 0))
+df_invoice.display()
+```
+
+## Filtering Valid Emails
+
+```python
+df_valid = df_email.filter(F.col("email").rlike(r"^\w+@\w+\.\w{2,3}$"))
+df_valid.display()
+```
+
+---
+
+## Advanced: Lookaheads & Lookbehinds
+
+### Positive Lookbehind
+
+```python
+df_dates = df_invoice.withColumn(
+    "date_only",
+    F.regexp_extract("text", r"(?<=Date: )\d{4}-\d{2}-\d{2}", 0)
+)
+df_dates.display()
+```
+
+### Negative Lookahead
+
+```python
+logs = [("User: John logged in at 14:23",), ("User: Jane logged out at 15:45",)]
+df_logs = spark.createDataFrame(logs, ["log"])
+df_logs = df_logs.withColumn("in_time", F.regexp_extract("log", r"^(?!.*out).*?(\d{2}:\d{2})", 1))
+df_logs.display()
+```
+
+---
+
+## Real-World Cleaning: Regex Replace
+
+```python
+phones = [("(123) 456-7890",), ("987.654.3210",)]
+df_phones = spark.createDataFrame(phones, ["phone"])
+df_phones = df_phones.withColumn("clean", F.regexp_replace("phone", r"[^\d]", ""))
+df_phones.display()
+```
+
+---
+
+## Summary
+
+Regex is more than just pattern matching—it's a tool for transforming, cleaning, and engineering features from raw, messy text. Mastering it in PySpark makes you an incredibly effective data scientist or engineer.
+
+🔥 Start small, test often, and remember: the best regex is the one that works **and** is readable!
+
+---

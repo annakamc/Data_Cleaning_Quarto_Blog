@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Annaka McClelland">
-<meta name="dcterms.date" content="2025-04-06">
+<meta name="dcterms.date" content="2025-03-03">
 
-<title>Data Cleaning Blog for My Regex Nerds - How Regex Helped Me Save 10 Hours a Week</title>
+<title>Data Cleaning Blog for My Regex Nerds - Real-Life Examples of Data Cleaning with Regex</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -171,13 +137,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">How Regex Helped Me Save 10 Hours a Week</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">Regex</div>
-                <div class="quarto-category">Automation</div>
-                <div class="quarto-category">Tips</div>
-              </div>
-                  </div>
+      <h1 class="title">Real-Life Examples of Data Cleaning with Regex</h1>
+                      </div>
   </div>
     
   
@@ -193,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 6, 2025</p>
+        <p class="date">March 3, 2025</p>
       </div>
     </div>
     
@@ -211,14 +172,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Content of your new post goes here. 🎉</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Clean up your messy strings!"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>match <span class="op">=</span> re.search(<span class="vs">r"messy"</span>, text)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> match:</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Regex wins!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!</p>
+<p><img src="woman_regex_pic.png" class="img-fluid" style="width:50.0%"></p>
+<blockquote class="blockquote">
+<p><strong>Regex isn’t just for text matching—it’s a powerhouse for real-world impact.</strong> From cleaning AWS Textract output to powering dashboards and machine learning models, regex plays a vital role in transforming raw text into structured, actionable insights. Let’s explore how I used it to help save my company over $100K and handle 50+ million rows of data (and growing!).</p>
+</blockquote>
+<hr>
+<section id="project-background" class="level2">
+<h2 class="anchored" data-anchor-id="project-background">Project Background</h2>
+<p>I was tasked with extracting data from complex engineering PDF drawings using <strong>AWS Textract</strong>, and turning the output into a <strong>clean, relational dataframe</strong>. The goal? Meet the diverse needs of downstream teams—whether for <strong>machine learning models</strong>, <strong>dashboards</strong>, or <strong>reporting insights</strong>—by making messy unstructured text clean and usable.</p>
+<p>To do this, I built a <strong>modular data cleaning and transformation flow</strong> in <strong>Databricks</strong> using <strong>PySpark</strong>, powered by a growing suite of custom regex functions.</p>
+<hr>
+</section>
+<section id="regex-flow-overview" class="level2">
+<h2 class="anchored" data-anchor-id="regex-flow-overview">Regex Flow Overview</h2>
+<p>This is the end-to-end pipeline I designed, which this blog will break down (with a visual coming soon!):</p>
+<p><strong>ingest → explode → parse → parse…n → compile → format → productionize</strong></p>
+<ul>
+<li><strong>Ingest</strong>: Read AWS Textract output from S3 into Databricks</li>
+<li><strong>Explode</strong>: Flatten nested JSON text objects into rows</li>
+<li><strong>Parse</strong>: Extract key patterns or features with regex</li>
+<li><strong>Parse…n</strong>: Repeat parsing steps as needed, based on logic layers</li>
+<li><strong>Compile</strong>: Append raw parsing outputs into a unified staging table</li>
+<li><strong>Format</strong>: Clean, reformat, and standardize columns for EDL ingestion</li>
+<li><strong>Productionize</strong>: Load into <strong>EDL current</strong> for dashboards, ML, and analytics</li>
+</ul>
+<hr>
+</section>
+<section id="the-real-star-parse...n" class="level2">
+<h2 class="anchored" data-anchor-id="the-real-star-parse...n">The Real Star: <code>parse...n</code></h2>
+<p>The core value of this project is in the <strong>regex parsing layers</strong>:</p>
+<ul>
+<li>🏗️ <strong>Enterprise standards</strong> are identified and extracted using flexible pattern matchers</li>
+<li>🧼 <strong>Filters</strong> clean up misreads or irrelevant tokens</li>
+<li>🧠 My favorite step: I built a PySpark function to <strong>clean, label, and enhance</strong> the extracted data
+<ul>
+<li>Adds a <code>description</code></li>
+<li>Outputs cleaned <code>standard_text</code></li>
+<li>Adds contextual details like <code>coating_type</code>, <code>layer_type</code>, etc.</li>
+</ul></li>
+<li>🔄 Then I used <code>fx_feature_format</code> to <strong>collapse</strong> the cleaned results into one clean output ready for the next step</li>
+</ul>
+<hr>
+</section>
+<section id="shell-for-code-example" class="level2">
+<h2 class="anchored" data-anchor-id="shell-for-code-example">Shell for Code Example</h2>
+<p>Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!</p>
+<p>```python # Sample regex-based parse function for extracting standard callouts</p>
+<p>import pyspark.sql.functions as F import re</p>
+<p><span class="citation" data-cites="F.udf">@F.udf</span>(“string”) def extract_standard(text): pattern = r”?:IEC|ISO|ASTM|IEEE|MIL|DIN)-??[A-Z-]? match = re.search(pattern, text) return match.group(0) if match else None</p>
+</section>
+<section id="example-usage" class="level1">
+<h1>Example usage:</h1>
+<p>df = df.withColumn(“standard_callout”, extract_standard(“raw_text_column”))</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

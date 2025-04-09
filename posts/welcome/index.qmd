@@ -1,14 +1,67 @@
 ---
-title: "Real-Life Examples of Data Cleaning with Regex"
+title: "Intro Into the World of Data Cleaning"
 author: "Annaka McClelland"
 date: "2025-03-03"
-# categories: [Real-World,Cast Iron,IEEE]
+categories: [data cleaning,intro]
 ---
 
-Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!
+## Why Data Cleaning and Regex Matter in Data Science
 
-![](woman_regex_pic.png){width=50%}
+Welcome to my blog! 🎉 If you're curious about **how real-world data becomes valuable insight**, you're in the right place.
 
-This post dives into one of my biggest passions—regex—and how it became a key part of one of my favorite projects: cleaning AWS Textract outputs from 2D PDF drawings. I was fortunate to be trusted with this project. By speaking and teaching about regex at advanced analytics meetings at work, I’ve carved out a niche where I get to use it daily. This project marks a turning point in my journey, and I’m excited to share what I’ve learned in a way that’s approachable, practical, and maybe even a little fun—for anyone curious about how powerful regex can be.
+In industry, raw data rarely arrives in a clean, ready-to-use format. It's messy, incomplete, inconsistent, and often misleading. That's where **data cleaning** steps in—a crucial but often underestimated part of the **data science** lifecycle.
 
+Let’s break it down a little:
 
+### 🔧 Data Engineering: The Plumbing of Data
+Data engineers build the infrastructure that moves and stores data efficiently. This includes:
+- ETL (Extract, Transform, Load) pipelines
+- Cloud data lakes and warehouses
+- APIs and automation scripts
+
+Without reliable engineering, data science wouldn’t even have usable data to work with.
+
+### 🧹 Data Cleaning: The Unsung Hero
+You might hear people say, "80% of data science is cleaning the data"—and they’re not wrong. Data cleaning involves:
+- Removing duplicates
+- Fixing missing or malformed values
+- Normalizing units and formats
+- Validating assumptions about the data
+
+It's like prepping your ingredients before cooking—you can’t make a 5-star dish from rotten tomatoes 🍅.
+
+### 🧠 Data Science: Asking the Right Questions
+Data scientists model cleaned data to:
+- Forecast demand
+- Predict customer churn
+- Optimize business operations
+- Build recommendation engines
+
+But none of this is possible without trust in the data.
+
+### 🧩 Enter: Regex
+Regular expressions (regex) are patterns that help you **search, extract, and transform** data efficiently. It’s a Swiss Army knife for:
+- **Feature engineering** (pulling zip codes from addresses)
+- **Data mining** (finding hidden patterns)
+- **Cleaning OCR outputs** (like PDFs scanned through AWS Textract)
+- **Standardizing formats** (like phone numbers or codes)
+
+Here’s a fun Python regex example:
+
+```python
+import re
+
+text = "Order Number: PO-12345 received on 2024-10-01"
+order_id = re.search(r"PO-\d+", text)
+
+if order_id:
+    print(f"Extracted Order ID: {order_id.group()}")
+```
+
+This pattern r"PO-\d+" tells Python to find a string that starts with "PO-" and is followed by one or more digits. That’s regex magic in action and don't worry it gets a lot more advanced!
+
+Whether you're debugging a Python script, writing SQL for dashboards, or exploring machine learning, regex and data cleaning skills will take you far. These are the foundations that make your work reproducible, scalable, and trustworthy.
+
+This blog is here to walk through real examples, business use cases, and clean code patterns to help you become confident in every stage of the data workflow—from chaos to clarity.
+
+Let’s clean, wrangle, and regex our way to greatness!

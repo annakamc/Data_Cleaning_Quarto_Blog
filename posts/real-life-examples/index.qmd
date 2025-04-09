@@ -1,16 +1,72 @@
 ---
-title: "How Regex Helped Me Save 10 Hours a Week"
+title: "Real-Life Examples of Data Cleaning with Regex"
 author: "Annaka McClelland"
-date: 2025-04-06
-categories: [Regex, Automation, Tips]
+date: "2025-03-03"
+# categories: [Real-World,Cast Iron,IEEE]
 ---
 
-Content of your new post goes here. 🎉
+Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!
+
+![](woman_regex_pic.png){width=50%}
+
+
+> **Regex isn't just for text matching—it's a powerhouse for real-world impact.** From cleaning AWS Textract output to powering dashboards and machine learning models, regex plays a vital role in transforming raw text into structured, actionable insights. Let’s explore how I used it to help save my company over $100K and handle 50+ million rows of data (and growing!).
+
+---
+
+## Project Background
+
+I was tasked with extracting data from complex engineering PDF drawings using **AWS Textract**, and turning the output into a **clean, relational dataframe**. The goal? Meet the diverse needs of downstream teams—whether for **machine learning models**, **dashboards**, or **reporting insights**—by making messy unstructured text clean and usable.
+
+To do this, I built a **modular data cleaning and transformation flow** in **Databricks** using **PySpark**, powered by a growing suite of custom regex functions.
+
+---
+
+## Regex Flow Overview
+
+This is the end-to-end pipeline I designed, which this blog will break down (with a visual coming soon!):
+
+**ingest → explode → parse → parse...n → compile → format → productionize**
+
+- **Ingest**: Read AWS Textract output from S3 into Databricks
+- **Explode**: Flatten nested JSON text objects into rows
+- **Parse**: Extract key patterns or features with regex
+- **Parse...n**: Repeat parsing steps as needed, based on logic layers
+- **Compile**: Append raw parsing outputs into a unified staging table
+- **Format**: Clean, reformat, and standardize columns for EDL ingestion
+- **Productionize**: Load into **EDL current** for dashboards, ML, and analytics
+
+---
+
+## The Real Star: `parse...n`
+
+The core value of this project is in the **regex parsing layers**:
+
+- 🏗️ **Enterprise standards** are identified and extracted using flexible pattern matchers
+- 🧼 **Filters** clean up misreads or irrelevant tokens
+- 🧠 My favorite step: I built a PySpark function to **clean, label, and enhance** the extracted data
+    - Adds a `description`
+    - Outputs cleaned `standard_text`
+    - Adds contextual details like `coating_type`, `layer_type`, etc.
+- 🔄 Then I used `fx_feature_format` to **collapse** the cleaned results into one clean output ready for the next step
+
+---
+
+## Shell for Code Example
+
+Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!
 
 ```python
+# Sample regex-based parse function for extracting standard callouts
+
+import pyspark.sql.functions as F
 import re
-text = "Clean up your messy strings!"
-match = re.search(r"messy", text)
-if match:
-    print("Regex wins!")
-```
+
+@F.udf("string")
+def extract_standard(text):
+    pattern = r"\b(?:IEC|ISO|ASTM|IEEE|MIL|DIN)-?\s?\d{1,5}[A-Z\-]?\b"
+    match = re.search(pattern, text)
+    return match.group(0) if match else None
+
+# Example usage:
+df = df.withColumn("standard_callout", extract_standard("raw_text_column"))

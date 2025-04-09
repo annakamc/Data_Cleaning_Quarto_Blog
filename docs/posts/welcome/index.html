@@ -9,7 +9,7 @@
 <meta name="author" content="Annaka McClelland">
 <meta name="dcterms.date" content="2025-03-03">
 
-<title>Data Cleaning Blog for My Regex Nerds - Real-Life Examples of Data Cleaning with Regex</title>
+<title>Data Cleaning Blog for My Regex Nerds - Intro Into the World of Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -137,8 +171,12 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Real-Life Examples of Data Cleaning with Regex</h1>
-                      </div>
+      <h1 class="title">Intro Into the World of Data Cleaning</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">data cleaning</div>
+                <div class="quarto-category">intro</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -172,11 +210,45 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!</p>
-<p><img src="woman_regex_pic.png" class="img-fluid" style="width:50.0%"></p>
-<p>This post dives into one of my biggest passions—regex—and how it became a key part of one of my favorite projects: cleaning AWS Textract outputs from 2D PDF drawings. I was fortunate to be trusted with this project. By speaking and teaching about regex at advanced analytics meetings at work, I’ve carved out a niche where I get to use it daily. This project marks a turning point in my journey, and I’m excited to share what I’ve learned in a way that’s approachable, practical, and maybe even a little fun—for anyone curious about how powerful regex can be.</p>
+<section id="why-data-cleaning-and-regex-matter-in-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="why-data-cleaning-and-regex-matter-in-data-science">Why Data Cleaning and Regex Matter in Data Science</h2>
+<p>Welcome to my blog! 🎉 If you’re curious about <strong>how real-world data becomes valuable insight</strong>, you’re in the right place.</p>
+<p>In industry, raw data rarely arrives in a clean, ready-to-use format. It’s messy, incomplete, inconsistent, and often misleading. That’s where <strong>data cleaning</strong> steps in—a crucial but often underestimated part of the <strong>data science</strong> lifecycle.</p>
+<p>Let’s break it down a little:</p>
+<section id="data-engineering-the-plumbing-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="data-engineering-the-plumbing-of-data">🔧 Data Engineering: The Plumbing of Data</h3>
+<p>Data engineers build the infrastructure that moves and stores data efficiently. This includes: - ETL (Extract, Transform, Load) pipelines - Cloud data lakes and warehouses - APIs and automation scripts</p>
+<p>Without reliable engineering, data science wouldn’t even have usable data to work with.</p>
+</section>
+<section id="data-cleaning-the-unsung-hero" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning-the-unsung-hero">🧹 Data Cleaning: The Unsung Hero</h3>
+<p>You might hear people say, “80% of data science is cleaning the data”—and they’re not wrong. Data cleaning involves: - Removing duplicates - Fixing missing or malformed values - Normalizing units and formats - Validating assumptions about the data</p>
+<p>It’s like prepping your ingredients before cooking—you can’t make a 5-star dish from rotten tomatoes 🍅.</p>
+</section>
+<section id="data-science-asking-the-right-questions" class="level3">
+<h3 class="anchored" data-anchor-id="data-science-asking-the-right-questions">🧠 Data Science: Asking the Right Questions</h3>
+<p>Data scientists model cleaned data to: - Forecast demand - Predict customer churn - Optimize business operations - Build recommendation engines</p>
+<p>But none of this is possible without trust in the data.</p>
+</section>
+<section id="enter-regex" class="level3">
+<h3 class="anchored" data-anchor-id="enter-regex">🧩 Enter: Regex</h3>
+<p>Regular expressions (regex) are patterns that help you <strong>search, extract, and transform</strong> data efficiently. It’s a Swiss Army knife for: - <strong>Feature engineering</strong> (pulling zip codes from addresses) - <strong>Data mining</strong> (finding hidden patterns) - <strong>Cleaning OCR outputs</strong> (like PDFs scanned through AWS Textract) - <strong>Standardizing formats</strong> (like phone numbers or codes)</p>
+<p>Here’s a fun Python regex example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Order Number: PO-12345 received on 2024-10-01"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>order_id <span class="op">=</span> re.search(<span class="vs">r"PO-\d+"</span>, text)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> order_id:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Extracted Order ID: </span><span class="sc">{</span>order_id<span class="sc">.</span>group()<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This pattern r”PO-” tells Python to find a string that starts with “PO-” and is followed by one or more digits. That’s regex magic in action and don’t worry it gets a lot more advanced!</p>
+<p>Whether you’re debugging a Python script, writing SQL for dashboards, or exploring machine learning, regex and data cleaning skills will take you far. These are the foundations that make your work reproducible, scalable, and trustworthy.</p>
+<p>This blog is here to walk through real examples, business use cases, and clean code patterns to help you become confident in every stage of the data workflow—from chaos to clarity.</p>
+<p>Let’s clean, wrangle, and regex our way to greatness!</p>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

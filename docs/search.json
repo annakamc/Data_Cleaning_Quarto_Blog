@@ -2,16 +2,86 @@
   {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
-    "title": "Real-Life Examples of Data Cleaning with Regex",
+    "title": "Intro Into the World of Data Cleaning",
     "section": "",
-    "text": "Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!\n\nThis post dives into one of my biggest passions—regex—and how it became a key part of one of my favorite projects: cleaning AWS Textract outputs from 2D PDF drawings. I was fortunate to be trusted with this project. By speaking and teaching about regex at advanced analytics meetings at work, I’ve carved out a niche where I get to use it daily. This project marks a turning point in my journey, and I’m excited to share what I’ve learned in a way that’s approachable, practical, and maybe even a little fun—for anyone curious about how powerful regex can be.\n\n\n\n Back to top"
+    "text": "Welcome to my blog! 🎉 If you’re curious about how real-world data becomes valuable insight, you’re in the right place.\nIn industry, raw data rarely arrives in a clean, ready-to-use format. It’s messy, incomplete, inconsistent, and often misleading. That’s where data cleaning steps in—a crucial but often underestimated part of the data science lifecycle.\nLet’s break it down a little:\n\n\nData engineers build the infrastructure that moves and stores data efficiently. This includes: - ETL (Extract, Transform, Load) pipelines - Cloud data lakes and warehouses - APIs and automation scripts\nWithout reliable engineering, data science wouldn’t even have usable data to work with.\n\n\n\nYou might hear people say, “80% of data science is cleaning the data”—and they’re not wrong. Data cleaning involves: - Removing duplicates - Fixing missing or malformed values - Normalizing units and formats - Validating assumptions about the data\nIt’s like prepping your ingredients before cooking—you can’t make a 5-star dish from rotten tomatoes 🍅.\n\n\n\nData scientists model cleaned data to: - Forecast demand - Predict customer churn - Optimize business operations - Build recommendation engines\nBut none of this is possible without trust in the data.\n\n\n\nRegular expressions (regex) are patterns that help you search, extract, and transform data efficiently. It’s a Swiss Army knife for: - Feature engineering (pulling zip codes from addresses) - Data mining (finding hidden patterns) - Cleaning OCR outputs (like PDFs scanned through AWS Textract) - Standardizing formats (like phone numbers or codes)\nHere’s a fun Python regex example:\nimport re\n\ntext = \"Order Number: PO-12345 received on 2024-10-01\"\norder_id = re.search(r\"PO-\\d+\", text)\n\nif order_id:\n    print(f\"Extracted Order ID: {order_id.group()}\")\nThis pattern r”PO-” tells Python to find a string that starts with “PO-” and is followed by one or more digits. That’s regex magic in action and don’t worry it gets a lot more advanced!\nWhether you’re debugging a Python script, writing SQL for dashboards, or exploring machine learning, regex and data cleaning skills will take you far. These are the foundations that make your work reproducible, scalable, and trustworthy.\nThis blog is here to walk through real examples, business use cases, and clean code patterns to help you become confident in every stage of the data workflow—from chaos to clarity.\nLet’s clean, wrangle, and regex our way to greatness!"
+  },
+  {
+    "objectID": "posts/welcome/index.html#why-data-cleaning-and-regex-matter-in-data-science",
+    "href": "posts/welcome/index.html#why-data-cleaning-and-regex-matter-in-data-science",
+    "title": "Intro Into the World of Data Cleaning",
+    "section": "",
+    "text": "Welcome to my blog! 🎉 If you’re curious about how real-world data becomes valuable insight, you’re in the right place.\nIn industry, raw data rarely arrives in a clean, ready-to-use format. It’s messy, incomplete, inconsistent, and often misleading. That’s where data cleaning steps in—a crucial but often underestimated part of the data science lifecycle.\nLet’s break it down a little:\n\n\nData engineers build the infrastructure that moves and stores data efficiently. This includes: - ETL (Extract, Transform, Load) pipelines - Cloud data lakes and warehouses - APIs and automation scripts\nWithout reliable engineering, data science wouldn’t even have usable data to work with.\n\n\n\nYou might hear people say, “80% of data science is cleaning the data”—and they’re not wrong. Data cleaning involves: - Removing duplicates - Fixing missing or malformed values - Normalizing units and formats - Validating assumptions about the data\nIt’s like prepping your ingredients before cooking—you can’t make a 5-star dish from rotten tomatoes 🍅.\n\n\n\nData scientists model cleaned data to: - Forecast demand - Predict customer churn - Optimize business operations - Build recommendation engines\nBut none of this is possible without trust in the data.\n\n\n\nRegular expressions (regex) are patterns that help you search, extract, and transform data efficiently. It’s a Swiss Army knife for: - Feature engineering (pulling zip codes from addresses) - Data mining (finding hidden patterns) - Cleaning OCR outputs (like PDFs scanned through AWS Textract) - Standardizing formats (like phone numbers or codes)\nHere’s a fun Python regex example:\nimport re\n\ntext = \"Order Number: PO-12345 received on 2024-10-01\"\norder_id = re.search(r\"PO-\\d+\", text)\n\nif order_id:\n    print(f\"Extracted Order ID: {order_id.group()}\")\nThis pattern r”PO-” tells Python to find a string that starts with “PO-” and is followed by one or more digits. That’s regex magic in action and don’t worry it gets a lot more advanced!\nWhether you’re debugging a Python script, writing SQL for dashboards, or exploring machine learning, regex and data cleaning skills will take you far. These are the foundations that make your work reproducible, scalable, and trustworthy.\nThis blog is here to walk through real examples, business use cases, and clean code patterns to help you become confident in every stage of the data workflow—from chaos to clarity.\nLet’s clean, wrangle, and regex our way to greatness!"
   },
   {
     "objectID": "posts/post-with-code/index.html",
     "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "title": "Regex Walkthrough",
     "section": "",
-    "text": "This is where I will transfer regex notebook\n\n\n\n Back to top"
+    "text": "Objective: Learn and apply regular expressions (Regex) in PySpark for feature engineering, data cleaning, and data transformation tasks.\n\n\n\nRegex (Regular Expressions) is a sequence of characters used to match patterns in text. It’s incredibly useful in data science and engineering workflows to: - Validate input - Extract values - Clean and format messy strings\n👉 Recommended resources: - Apache Spark Regex Functions - Regexr Playground\n\n\n\n\nfrom pyspark.sql import SparkSession, functions as F\nspark = SparkSession.builder.getOrCreate()\n\nrlike() – Filters rows matching a regex.\nregexp_extract() – Extracts matching groups from text.\nregexp_replace() – Replaces substrings matching regex.\n\n\n\n\n\n# Simple filter: find cadname containing '_s1' + 1-3 characters and ending in '.'\ndf = spark.table(\"pdda_pac.pac_silver_prod\")\ndf_filtered = df.filter(F.col(\"cadname\").rlike(r\"_s1.{1,3}\\.\")).limit(10)\ndf_filtered.display()\n\n\n\nemails = [(\"Alice\", \"alice@example.com\"), (\"Bob\", \"bob_at_example.com\")]\ndf_email = spark.createDataFrame(emails, [\"name\", \"email\"])\ndf_email = df_email.withColumn(\"domain\", F.regexp_extract(\"email\", r\"@([\\w.]+)\", 1))\ndf_email.display()\n\n\n\n\ninvoice_data = [(\"Invoice ID: 001 Date: 2023-03-15\",)]\ndf_invoice = spark.createDataFrame(invoice_data, [\"text\"])\ndf_invoice = df_invoice.withColumn(\"year\", F.regexp_extract(\"text\", r\"(?&lt;year&gt;\\d{4})\", 0))\ndf_invoice.display()\n\n\n\ndf_valid = df_email.filter(F.col(\"email\").rlike(r\"^\\w+@\\w+\\.\\w{2,3}$\"))\ndf_valid.display()\n\n\n\n\n\n\ndf_dates = df_invoice.withColumn(\n    \"date_only\",\n    F.regexp_extract(\"text\", r\"(?&lt;=Date: )\\d{4}-\\d{2}-\\d{2}\", 0)\n)\ndf_dates.display()\n\n\n\nlogs = [(\"User: John logged in at 14:23\",), (\"User: Jane logged out at 15:45\",)]\ndf_logs = spark.createDataFrame(logs, [\"log\"])\ndf_logs = df_logs.withColumn(\"in_time\", F.regexp_extract(\"log\", r\"^(?!.*out).*?(\\d{2}:\\d{2})\", 1))\ndf_logs.display()\n\n\n\n\n\nphones = [(\"(123) 456-7890\",), (\"987.654.3210\",)]\ndf_phones = spark.createDataFrame(phones, [\"phone\"])\ndf_phones = df_phones.withColumn(\"clean\", F.regexp_replace(\"phone\", r\"[^\\d]\", \"\"))\ndf_phones.display()\n\n\n\n\nRegex is more than just pattern matching—it’s a tool for transforming, cleaning, and engineering features from raw, messy text. Mastering it in PySpark makes you an incredibly effective data scientist or engineer.\n🔥 Start small, test often, and remember: the best regex is the one that works and is readable!"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#what-is-regex",
+    "href": "posts/post-with-code/index.html#what-is-regex",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "Regex (Regular Expressions) is a sequence of characters used to match patterns in text. It’s incredibly useful in data science and engineering workflows to: - Validate input - Extract values - Clean and format messy strings\n👉 Recommended resources: - Apache Spark Regex Functions - Regexr Playground"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#key-pyspark-regex-functions",
+    "href": "posts/post-with-code/index.html#key-pyspark-regex-functions",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "from pyspark.sql import SparkSession, functions as F\nspark = SparkSession.builder.getOrCreate()\n\nrlike() – Filters rows matching a regex.\nregexp_extract() – Extracts matching groups from text.\nregexp_replace() – Replaces substrings matching regex."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#beginner-pattern-matching-filtering",
+    "href": "posts/post-with-code/index.html#beginner-pattern-matching-filtering",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "# Simple filter: find cadname containing '_s1' + 1-3 characters and ending in '.'\ndf = spark.table(\"pdda_pac.pac_silver_prod\")\ndf_filtered = df.filter(F.col(\"cadname\").rlike(r\"_s1.{1,3}\\.\")).limit(10)\ndf_filtered.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#basic-extraction",
+    "href": "posts/post-with-code/index.html#basic-extraction",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "emails = [(\"Alice\", \"alice@example.com\"), (\"Bob\", \"bob_at_example.com\")]\ndf_email = spark.createDataFrame(emails, [\"name\", \"email\"])\ndf_email = df_email.withColumn(\"domain\", F.regexp_extract(\"email\", r\"@([\\w.]+)\", 1))\ndf_email.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#intermediate-grouping-boundaries",
+    "href": "posts/post-with-code/index.html#intermediate-grouping-boundaries",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "invoice_data = [(\"Invoice ID: 001 Date: 2023-03-15\",)]\ndf_invoice = spark.createDataFrame(invoice_data, [\"text\"])\ndf_invoice = df_invoice.withColumn(\"year\", F.regexp_extract(\"text\", r\"(?&lt;year&gt;\\d{4})\", 0))\ndf_invoice.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#filtering-valid-emails",
+    "href": "posts/post-with-code/index.html#filtering-valid-emails",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "df_valid = df_email.filter(F.col(\"email\").rlike(r\"^\\w+@\\w+\\.\\w{2,3}$\"))\ndf_valid.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#advanced-lookaheads-lookbehinds",
+    "href": "posts/post-with-code/index.html#advanced-lookaheads-lookbehinds",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "df_dates = df_invoice.withColumn(\n    \"date_only\",\n    F.regexp_extract(\"text\", r\"(?&lt;=Date: )\\d{4}-\\d{2}-\\d{2}\", 0)\n)\ndf_dates.display()\n\n\n\nlogs = [(\"User: John logged in at 14:23\",), (\"User: Jane logged out at 15:45\",)]\ndf_logs = spark.createDataFrame(logs, [\"log\"])\ndf_logs = df_logs.withColumn(\"in_time\", F.regexp_extract(\"log\", r\"^(?!.*out).*?(\\d{2}:\\d{2})\", 1))\ndf_logs.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#real-world-cleaning-regex-replace",
+    "href": "posts/post-with-code/index.html#real-world-cleaning-regex-replace",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "phones = [(\"(123) 456-7890\",), (\"987.654.3210\",)]\ndf_phones = spark.createDataFrame(phones, [\"phone\"])\ndf_phones = df_phones.withColumn(\"clean\", F.regexp_replace(\"phone\", r\"[^\\d]\", \"\"))\ndf_phones.display()"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#summary",
+    "href": "posts/post-with-code/index.html#summary",
+    "title": "Regex Walkthrough",
+    "section": "",
+    "text": "Regex is more than just pattern matching—it’s a tool for transforming, cleaning, and engineering features from raw, messy text. Mastering it in PySpark makes you an incredibly effective data scientist or engineer.\n🔥 Start small, test often, and remember: the best regex is the one that works and is readable!"
   },
   {
     "objectID": "about.html",
@@ -25,13 +95,41 @@
     "href": "index.html",
     "title": "Home Page",
     "section": "",
-    "text": "How Regex Helped Me Save 10 Hours a Week\n\n\n\n\n\n\n\nRegex\n\n\nAutomation\n\n\nTips\n\n\n\n\n\n\n\n\n\n\n\nApr 6, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\n  \n\n\n\n\nReal-Life Examples of Data Cleaning with Regex\n\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\nNo matching items\n\n Back to top"
+    "text": "Regex Walkthrough\n\n\n\n\n\n\n\n\n\n\n\n\nMar 15, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\n  \n\n\n\n\nReal-Life Examples of Data Cleaning with Regex\n\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\n  \n\n\n\n\nIntro Into the World of Data Cleaning\n\n\n\n\n\n\n\ndata cleaning\n\n\nintro\n\n\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nAnnaka McClelland\n\n\n\n\n\n\nNo matching items\n\n Back to top"
   },
   {
     "objectID": "posts/real-life-examples/index.html",
     "href": "posts/real-life-examples/index.html",
-    "title": "How Regex Helped Me Save 10 Hours a Week",
+    "title": "Real-Life Examples of Data Cleaning with Regex",
     "section": "",
-    "text": "Content of your new post goes here. 🎉\nimport re\ntext = \"Clean up your messy strings!\"\nmatch = re.search(r\"messy\", text)\nif match:\n    print(\"Regex wins!\")\n\n\n\n Back to top"
+    "text": "Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!"
+  },
+  {
+    "objectID": "posts/real-life-examples/index.html#project-background",
+    "href": "posts/real-life-examples/index.html#project-background",
+    "title": "Real-Life Examples of Data Cleaning with Regex",
+    "section": "Project Background",
+    "text": "Project Background\nI was tasked with extracting data from complex engineering PDF drawings using AWS Textract, and turning the output into a clean, relational dataframe. The goal? Meet the diverse needs of downstream teams—whether for machine learning models, dashboards, or reporting insights—by making messy unstructured text clean and usable.\nTo do this, I built a modular data cleaning and transformation flow in Databricks using PySpark, powered by a growing suite of custom regex functions."
+  },
+  {
+    "objectID": "posts/real-life-examples/index.html#regex-flow-overview",
+    "href": "posts/real-life-examples/index.html#regex-flow-overview",
+    "title": "Real-Life Examples of Data Cleaning with Regex",
+    "section": "Regex Flow Overview",
+    "text": "Regex Flow Overview\nThis is the end-to-end pipeline I designed, which this blog will break down (with a visual coming soon!):\ningest → explode → parse → parse…n → compile → format → productionize\n\nIngest: Read AWS Textract output from S3 into Databricks\nExplode: Flatten nested JSON text objects into rows\nParse: Extract key patterns or features with regex\nParse…n: Repeat parsing steps as needed, based on logic layers\nCompile: Append raw parsing outputs into a unified staging table\nFormat: Clean, reformat, and standardize columns for EDL ingestion\nProductionize: Load into EDL current for dashboards, ML, and analytics"
+  },
+  {
+    "objectID": "posts/real-life-examples/index.html#the-real-star-parse...n",
+    "href": "posts/real-life-examples/index.html#the-real-star-parse...n",
+    "title": "Real-Life Examples of Data Cleaning with Regex",
+    "section": "The Real Star: parse...n",
+    "text": "The Real Star: parse...n\nThe core value of this project is in the regex parsing layers:\n\n🏗️ Enterprise standards are identified and extracted using flexible pattern matchers\n🧼 Filters clean up misreads or irrelevant tokens\n🧠 My favorite step: I built a PySpark function to clean, label, and enhance the extracted data\n\nAdds a description\nOutputs cleaned standard_text\nAdds contextual details like coating_type, layer_type, etc.\n\n🔄 Then I used fx_feature_format to collapse the cleaned results into one clean output ready for the next step"
+  },
+  {
+    "objectID": "posts/real-life-examples/index.html#shell-for-code-example",
+    "href": "posts/real-life-examples/index.html#shell-for-code-example",
+    "title": "Real-Life Examples of Data Cleaning with Regex",
+    "section": "Shell for Code Example",
+    "text": "Shell for Code Example\nHere’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!\n```python # Sample regex-based parse function for extracting standard callouts\nimport pyspark.sql.functions as F import re\n@F.udf(“string”) def extract_standard(text): pattern = r”?:IEC|ISO|ASTM|IEEE|MIL|DIN)-??[A-Z-]? match = re.search(pattern, text) return match.group(0) if match else None"
   }
 ]
