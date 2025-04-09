@@ -1,1 +1,8 @@
 /* css styles */
+.quarto-about-jolla .about-contents {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+  }
+  
