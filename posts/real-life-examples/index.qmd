@@ -2,7 +2,7 @@
 title: "Real-Life Examples of Data Cleaning with Regex"
 author: "Annaka McClelland"
 date: "2025-03-03"
-categories: [Real-World,Cast Iron,IEEE]
+categories: [Real-World, Regex, Data Cleaning]
 format:
   html:
     toc: true
