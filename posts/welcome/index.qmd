@@ -2,12 +2,17 @@
 title: "Intro Into the World of Data Cleaning"
 author: "Annaka McClelland"
 date: "2025-03-03"
-categories: [data cleaning,intro]
+categories: [Data Cleaning, Intro]
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
 ---
 
 ## Why Data Cleaning and Regex Matter in Data Science
 
-Welcome to my blog! 🎉 If you're curious about **how real-world data becomes valuable insight**, you're in the right place.
+If you're curious about **how real-world data becomes valuable insight**, you're in the right place.
 
 In industry, raw data rarely arrives in a clean, ready-to-use format. It's messy, incomplete, inconsistent, and often misleading. That's where **data cleaning** steps in—a crucial but often underestimated part of the **data science** lifecycle.
 

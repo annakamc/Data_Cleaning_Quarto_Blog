@@ -2,7 +2,12 @@
 title: "Real-Life Examples of Data Cleaning with Regex"
 author: "Annaka McClelland"
 date: "2025-03-03"
-# categories: [Real-World,Cast Iron,IEEE]
+categories: [Real-World,Cast Iron,IEEE]
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
 ---
 
 Data cleaning is one of the most important—and often overlooked—steps in any data workflow. In both industry and real life, clean data leads to clearer insights, better decisions, and stronger outcomes. Thanks for joining me on this journey into real-world examples and practical industry level tips!
@@ -56,17 +61,3 @@ The core value of this project is in the **regex parsing layers**:
 
 Here’s where I’ll walk you through a simplified version of the code. Stay tuned for deep dives!
 
-```python
-# Sample regex-based parse function for extracting standard callouts
-
-import pyspark.sql.functions as F
-import re
-
-@F.udf("string")
-def extract_standard(text):
-    pattern = r"\b(?:IEC|ISO|ASTM|IEEE|MIL|DIN)-?\s?\d{1,5}[A-Z\-]?\b"
-    match = re.search(pattern, text)
-    return match.group(0) if match else None
-
-# Example usage:
-df = df.withColumn("standard_callout", extract_standard("raw_text_column"))

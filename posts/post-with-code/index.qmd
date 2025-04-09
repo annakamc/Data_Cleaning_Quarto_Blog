@@ -2,6 +2,7 @@
 title: "Regex Walkthrough"
 author: "Annaka McClelland"
 date: "2025-03-15"
+categories: [Data Cleaning, Regex, Tips]
 format:
   html:
     toc: true
