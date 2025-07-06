@@ -21,7 +21,7 @@ Whether you're a complete beginner or a seasoned analyst, this blog shows how re
 📦 DSS_Senior_project_Blog.github.io/
 ├── _quarto.yml                # Site structure (navbars, posts, sidebar)
 ├── index.qmd                 # Home page
-├── about.qmd                 # About Me page
+├── about_me.qmd                 # About Me page
 ├── README.md                 # You're here!
 ├── styles.css                # Custom styles
 ├── posts/                    # Blog post sources
